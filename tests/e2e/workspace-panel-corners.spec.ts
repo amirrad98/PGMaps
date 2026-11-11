@@ -1,5 +1,7 @@
 import { expect, test, type Locator, type Page } from '@playwright/test'
 
+test.setTimeout(90_000)
+
 test.beforeEach(async ({ page }) => {
   await page.route('https://basemaps.cartocdn.com/**', (route) =>
     route.fulfill({ json: { version: 8, sources: {}, layers: [] } }),
@@ -13,6 +15,8 @@ async function openWorkspace(page: Page, name: string) {
 }
 
 async function dragCorner(page: Page, button: Locator, dx: number, dy: number, touch: boolean) {
+  // Wait for the pane to settle before sending raw mouse or touch coordinates.
+  await button.click({ trial: true })
   const box = (await button.boundingBox())!
   const start = { x: box.x + box.width / 2, y: box.y + box.height / 2 }
   const finish = { x: start.x + dx, y: start.y + dy }

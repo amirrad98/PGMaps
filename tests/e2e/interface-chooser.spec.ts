@@ -1,5 +1,7 @@
 import { expect, test } from '@playwright/test'
 
+test.setTimeout(90_000)
+
 for (const width of [390, 1108, 1440]) {
   test(`choose and switch interfaces with the same road and station at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 954 })

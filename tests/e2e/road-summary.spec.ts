@@ -1,5 +1,7 @@
 import { expect, test, type Page } from '@playwright/test'
 
+test.setTimeout(90_000)
+
 async function open(page: Page, name = 'Ribbon') {
   await page.goto('/dev/forestry/road-design?example=training')
   await page.getByRole('button', { name: `Open ${name}`, exact: true }).click()

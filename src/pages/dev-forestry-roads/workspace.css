@@ -202,6 +202,11 @@
 }
 
 @media (max-height: 620px) {
+  .road-workspace[data-tool-dock='top'][data-tiny-height] {
+    row-gap: 2px;
+    padding-bottom: 2px;
+  }
+
   .road-workspace:not([data-fullscreen]) {
     padding-top: 0.5rem;
   }
